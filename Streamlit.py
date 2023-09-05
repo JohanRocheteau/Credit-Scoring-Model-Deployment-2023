@@ -120,13 +120,7 @@ if option == "Informations Clients" :
         
         # Titre
         st.markdown("<h2 style='text-align: center; color: green;'>  Résultats du prêt :</h1>", unsafe_allow_html=True)
-    
-        # Résultats models avec MLFlow :
-        model_name = "sk-learn-LGBMClassifier"
-        stage = "Production"
-        loaded_model = mlflow.sklearn.load_model(model_uri=f"models:/{model_name}/{stage}")
-
-        
+         
         # Résultats models avec l'API FLASK reliée à MLFLOW :
         url = 'http://localhost:8080/api/'
         
@@ -211,6 +205,11 @@ if option == "Informations Clients" :
         st.markdown("<h2 style='text-align: center; color: green;'>Feature Importance Globale :</h1>", unsafe_allow_html=True)
         image = Image.open('SHAPGlobale.png')
         st.image(image, width = 600)
+    
+        # Résultats models avec MLFlow :
+        model_name = "sk-learn-LGBMClassifier"
+        stage = "Production"
+        loaded_model = mlflow.sklearn.load_model(model_uri=f"models:/{model_name}/{stage}")
     
         # Feature importance locale :
         st.markdown("<h2 style='text-align: center; color: green;'>Feature Importance Locale :</h1>", unsafe_allow_html=True)
