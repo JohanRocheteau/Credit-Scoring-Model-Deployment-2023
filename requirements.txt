@@ -6,3 +6,4 @@ requests
 mlflow
 plotly
 numba
+shap
