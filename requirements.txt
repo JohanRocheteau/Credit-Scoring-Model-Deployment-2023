@@ -7,3 +7,4 @@ mlflow
 plotly
 numba
 shap
+ipython
