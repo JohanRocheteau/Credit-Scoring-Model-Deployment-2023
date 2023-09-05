@@ -2,7 +2,7 @@ streamlit==1.25.0
 pandas==1.5.3
 random
 re==2.2.1
-seaborn=0.12.2
+seaborn
 matplotlib.pyplot
 plotly.graph_objects
 numpy==1.24.3
