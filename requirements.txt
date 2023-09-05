@@ -9,3 +9,4 @@ numba
 shap
 ipython
 Flask
+gunicorn
