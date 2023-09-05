@@ -1,6 +1,5 @@
 streamlit==1.25.0
 pandas==1.5.3
-random
 re==2.2.1
 seaborn
 matplotlib.pyplot
