@@ -1,0 +1,11 @@
+streamlit==1.25.0
+pandas==1.5.3
+random
+re==2.2.1
+seaborn=0.12.2
+matplotlib.pyplot
+plotly.graph_objects
+numpy==1.24.3
+requests==2.31.0
+json==2.0.9
+mlflow==2.6.0
