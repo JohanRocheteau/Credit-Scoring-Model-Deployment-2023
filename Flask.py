@@ -2,6 +2,7 @@
 from flask import Flask, request
 import mlflow
 import numpy as np
+import pickle
 
 app = Flask(__name__)
 
@@ -21,7 +22,7 @@ def predict():
 
 if __name__ == '__main__':
     # Load the model
-    model_uri = "mlflow-artifacts:/8cef877a90864d9ea9a1432b58f8e5d3/dd8c1ebb7e1b4929bcbc968736cf8e0d/artifacts/sklearn-model"
-    model = mlflow.sklearn.load_model(model_uri)
+    model = pickle.load(open('ModelGrid.sav', 'rb'))
+    #model = mlflow.sklearn.load_model(model_uri)
     
     app.run(port=8080, debug=True)
