@@ -207,9 +207,8 @@ if option == "Informations Clients" :
         st.image(image, width = 600)
     
         # Résultats models avec MLFlow :
-        model_name = "sk-learn-LGBMClassifier"
-        stage = "Production"
-        loaded_model = mlflow.sklearn.load_model(model_uri=f"models:/{model_name}/{stage}")
+        
+        loaded_model = pickle.load(open('ModelGrid.sav', 'rb'))
     
         # Feature importance locale :
         st.markdown("<h2 style='text-align: center; color: green;'>Feature Importance Locale :</h1>", unsafe_allow_html=True)
