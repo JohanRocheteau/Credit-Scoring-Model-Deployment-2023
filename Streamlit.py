@@ -122,15 +122,18 @@ if option == "Informations Clients" :
         st.markdown("<h2 style='text-align: center; color: green;'>  Résultats du prêt :</h1>", unsafe_allow_html=True)
          
         # Résultats models avec l'API FLASK reliée à MLFLOW :
-        url = 'http://localhost:8080/api/'
+        #url = 'http://localhost:8080/api/'
         
-        Variables.remove('TARGET')
-        data = DataClient.values.tolist()
-        j_data = json.dumps(data)
-        headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
-        r = requests.post(url, data=j_data, headers=headers)
-        result2 = float(r.text.split(' ')[1].split(']]')[0])
-        result2 = int(round(result2,2)*100)
+        #Variables.remove('TARGET')
+        #data = DataClient.values.tolist()
+        #j_data = json.dumps(data)
+        #headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
+        #r = requests.post(url, data=j_data, headers=headers)
+        #result2 = float(r.text.split(' ')[1].split(']]')[0])
+        #result2 = int(round(result2,2)*100)
+        
+        loaded_model = pickle.load(open('ModelGrid.sav', 'rb'))
+        result2 = loaded_model.predict_proba(DataClient)
         
         # Graphique jauge :     
 
@@ -205,10 +208,6 @@ if option == "Informations Clients" :
         st.markdown("<h2 style='text-align: center; color: green;'>Feature Importance Globale :</h1>", unsafe_allow_html=True)
         image = Image.open('SHAPGlobale.png')
         st.image(image, width = 600)
-    
-        # Résultats models avec MLFlow :
-        
-        loaded_model = pickle.load(open('ModelGrid.sav', 'rb'))
     
         # Feature importance locale :
         st.markdown("<h2 style='text-align: center; color: green;'>Feature Importance Locale :</h1>", unsafe_allow_html=True)
