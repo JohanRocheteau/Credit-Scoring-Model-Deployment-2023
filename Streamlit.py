@@ -134,6 +134,7 @@ if option == "Informations Clients" :
         
         loaded_model = pickle.load(open('ModelGrid.sav', 'rb'))
         result2 = loaded_model.predict_proba(DataClient)
+        result2 = int(result2[0][1]*100)
         
         # Graphique jauge :     
 
