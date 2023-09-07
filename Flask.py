@@ -25,4 +25,4 @@ if __name__ == '__main__':
     model = pickle.load(open('ModelGrid.sav', 'rb'))
     #model = mlflow.sklearn.load_model(model_uri)
     
-    app.run(port=8080, debug=True)
+    #app.run(port=8080, debug=True)
