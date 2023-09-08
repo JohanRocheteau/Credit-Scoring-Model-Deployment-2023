@@ -122,19 +122,20 @@ if option == "Informations Clients" :
         st.markdown("<h2 style='text-align: center; color: green;'>  Résultats du prêt :</h1>", unsafe_allow_html=True)
          
         # Résultats models avec l'API FLASK reliée à MLFLOW :
-        #url = 'http://localhost:8080/api/'
+        url = 'https://prediction-app-p7-6a2e12152edf.herokuapp.com/api/'
         
-        #Variables.remove('TARGET')
-        #data = DataClient.values.tolist()
-        #j_data = json.dumps(data)
-        #headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
-        #r = requests.post(url, data=j_data, headers=headers)
-        #result2 = float(r.text.split(' ')[1].split(']]')[0])
-        #result2 = int(round(result2,2)*100)
+        Variables.remove('TARGET')
+        data = DataClient.values.tolist()
+        j_data = json.dumps(data)
+        headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
+        r = requests.post(url, data=j_data, headers=headers)
+        result2 = float(r.text.split(' ')[1].split(']]')[0])
+        result2 = int(round(result2,2)*100)
         
+        # Si on utilise directement le model de puis un fichier de sauvegarde :
         loaded_model = pickle.load(open('ModelGrid.sav', 'rb'))
-        result2 = loaded_model.predict_proba(DataClient)
-        result2 = int(result2[0][1]*100)
+        #result2 = loaded_model.predict_proba(DataClient)
+        #result2 = int(result2[0][1]*100)
         
         # Graphique jauge :     
 
