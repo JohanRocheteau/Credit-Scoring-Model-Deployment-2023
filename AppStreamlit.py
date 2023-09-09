@@ -143,7 +143,7 @@ def GoodPlots(Var1, Var2, Target, OldData) :
     ax["B"].axvline(DataClient[Var2].values, linewidth = 2, color='r')
     ax['C'] = sns.scatterplot(OldData, x = Var1, y = Var2, hue = listresult, palette="blend:red,green")
     ax['C'] = sns.scatterplot(DataClient, x = Var1, y = Var2, s=400, hue = Var2, palette = ['blue'], marker = '*')
-    ax['C'] = plt.legend('')
+    #ax['C'] = plt.legend('')
     return st.pyplot(fig)
 
 
