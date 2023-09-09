@@ -30,8 +30,12 @@ def load_data(url):
     df = pd.read_csv(url)
     return df
 
+try : # for pytest
+    OldData = load_data("C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\OldDataP7s.csv")
+except : # for streamlit online
+    OldData = load_data("OldDataP7s.csv")
 
-OldData = load_data("OldDataP7s.csv")
+
 Variables = list(OldData.columns)
 
 # Création d'onglets :
@@ -55,7 +59,7 @@ if option == "Page d'accueil" :
     # Logo Entreprise :
     col1, col2, col3, col4 = st.columns(4) # Division en colonne pour centrer l'image.
     with col2 :
-        OpenPicture('LogoEntreprise.png', 300)
+        OpenPicture('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\LogoEntreprise.png', 300)
 
         
     st.markdown('')
@@ -68,9 +72,6 @@ if option == "Page d'accueil" :
     st.markdown("<h3 style='font-weight:bold;'>But de l'application :</h1>", unsafe_allow_html=True)
     st.markdown('')
     st.markdown('#### Permettre aux clients et aux chargés de clientèles de comprendre les résultats.')
-
-
-
 
 if option == "Informations Clients" :
     # Titre
@@ -86,8 +87,8 @@ if option == "Informations Clients" :
         listeNC.insert(0, ' ')
         return listeNC, listNewClients
     
-    listeNC = ListeNewClient('listNewClients.csv')[0]
-    listNewClients = ListeNewClient('listNewClients.csv')[1]
+    listeNC = ListeNewClient('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\listNewClients.csv')[0]
+    listNewClients = ListeNewClient('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\listNewClients.csv')[1]
     
         # Séléction d'un client par le chargé de clientel :
     def ChoixClient (listeNC) :
@@ -214,13 +215,13 @@ if option == "Informations Clients" :
             
         with col1 :
             if result2 >= 50:
-                OpenPicture('PouceVert.png', 300)
+                OpenPicture('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\PouceVert.png', 300)
             if result2 < 50:
-                OpenPicture('PouceRouge.png', 300)
+                OpenPicture('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\PouceRouge.png', 300)
     
         # Feature importance globale :
         st.markdown("<h2 style='text-align: center; color: green;'>Feature Importance Globale :</h1>", unsafe_allow_html=True)
-        OpenPicture('SHAPGlobale.png', 600)
+        OpenPicture('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\SHAPGlobale.png', 600)
     
         # Feature importance locale :
         st.markdown("<h2 style='text-align: center; color: green;'>Feature Importance Locale :</h1>", unsafe_allow_html=True)
