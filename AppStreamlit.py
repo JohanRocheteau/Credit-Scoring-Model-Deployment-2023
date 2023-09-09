@@ -11,6 +11,7 @@ import numpy as np
 import requests
 import json
 import mlflow
+from matplotlib.lines import Line2D
 
 # Suppression des warnings pour SHAP :
 from numba.core.errors import NumbaDeprecationWarning, NumbaPendingDeprecationWarning
@@ -132,6 +133,8 @@ def GoodVariables(ShapValues, OldData):
 
 # Plots finaux :
 def GoodPlots(Var1, Var2, Target, OldData) :
+    custom_legends = [Line2D([0], [0], color = 'r', lw=4, label='Scatter'),
+                Line2D([0], [0], color = 'g', lw=4, label='Scatter')]
     fig = plt.figure(figsize = (10,8))
     ax = fig.subplot_mosaic("""
                             AB
@@ -143,7 +146,7 @@ def GoodPlots(Var1, Var2, Target, OldData) :
     ax["B"].axvline(DataClient[Var2].values, linewidth = 2, color='r')
     ax['C'] = sns.scatterplot(OldData, x = Var1, y = Var2, hue = listresult, palette="blend:red,green")
     ax['C'] = sns.scatterplot(DataClient, x = Var1, y = Var2, s=400, hue = Var2, palette = ['blue'], marker = '*')
-    #ax['C'] = plt.legend('')
+    ax['C'] = plt.legend(handles = custom_legends, loc='center')
     return st.pyplot(fig)
 
 
