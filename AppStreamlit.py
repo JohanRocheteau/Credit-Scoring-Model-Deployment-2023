@@ -131,7 +131,7 @@ def GoodVariables(ShapValues, OldData):
     return BestVariables
 
 # Plots finaux :
-def GoodPlots(Var1, Var2) :
+def GoodPlots(Var1, Var2, Target, OldData) :
     fig = plt.figure(figsize = (10,8))
     ax = fig.subplot_mosaic("""
                             AB
