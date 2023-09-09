@@ -298,5 +298,5 @@ if option == "Informations Clients" :
             st.write('')
         
         else :            
-            GoodPlots(Var1, Var2)
+            GoodPlots(Var1, Var2, Target, OldData)
             
