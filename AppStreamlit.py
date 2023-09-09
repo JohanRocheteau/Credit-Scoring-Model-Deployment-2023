@@ -30,15 +30,18 @@ def load_data(url):
     df = pd.read_csv(url)
     return df
 
-OldData = load_data("OldDataP7s.csv")
+OldData = load_data("C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\OldDataP7s.csv")
 Variables = list(OldData.columns)
 
 # Création d'onglets :
 option = st.sidebar.selectbox(
     "Sommaire :",
-    ("Page d'accueil", "Informations Clients")
-)
+    ("Page d'accueil", "Informations Clients"))
 
+# Def ouverture des images :
+def OpenPicture (url, size):
+    image = Image.open(url)
+    return st.image(image, width = size)
 
 # Onglet N°1 : Page d'accueil :
 if option == "Page d'accueil" :
@@ -51,8 +54,8 @@ if option == "Page d'accueil" :
     # Logo Entreprise :
     col1, col2, col3, col4 = st.columns(4) # Division en colonne pour centrer l'image.
     with col2 :
-        image = Image.open('LogoEntreprise.png')
-        st.image(image, width=300)
+        OpenPicture('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\LogoEntreprise.png', 300)
+
         
     st.markdown('')
     st.markdown('')
@@ -74,14 +77,23 @@ if option == "Informations Clients" :
 
     # N° de client :
         # Ouverture liste des clients :
-    listNewClients = pd.read_csv('listNewClients.csv')
-    listNewClients.reset_index(inplace = True)
-    listeNC = list(listNewClients['SK_ID_CURR'])
+    def ListeNewClient (listecsv):
+        listNewClients = pd.read_csv(listecsv)
+        listNewClients.reset_index(inplace = True)
+        listeNC = list(listNewClients['SK_ID_CURR'])
         # Ajout d'un client 0 pour que rien ne s'affiche au départ :
-    listeNC.insert(0, ' ')
+        listeNC.insert(0, ' ')
+        return listeNC, listNewClients
+    
+    listeNC = ListeNewClient('listNewClients.csv')[0]
+    listNewClients = ListeNewClient('listNewClients.csv')[1]
     
         # Séléction d'un client par le chargé de clientel :
-    Client = st.selectbox('Veuillez choisir le numéro de votre client : ', listeNC)
+    def ChoixClient (listeNC) :
+        Client = st.selectbox('Veuillez choisir le numéro de votre client : ', listeNC)
+        return Client
+    
+    Client = ChoixClient(listeNC)
     
     # Si pas de client séléctionné :
     if Client == ' ' :
@@ -138,97 +150,101 @@ if option == "Informations Clients" :
         #result2 = int(result2[0][1]*100)
         
         # Graphique jauge :     
-
-        plot_bgcolor = "#def"
-        quadrant_colors = [plot_bgcolor, "#2bad4e", "#85e043", "#f2a529", "#f25829"] 
-        quadrant_text = ["", "<b>Very High</b>", "<b>High</b>", "<b>Low</b>", "<b>Very Low</b>"]
-        n_quadrants = len(quadrant_colors) - 1
-        
-        current_value = result2
-        min_value = 0
-        max_value = 100
-        hand_length = np.sqrt(2) / 4
-        hand_angle = np.pi * (1 - (max(min_value, min(max_value, current_value)) - min_value) / (max_value - min_value))
-        
-        fig = go.Figure(
-            data=[
-                go.Pie(
-                    values=[0.5] + (np.ones(n_quadrants) / 2 / n_quadrants).tolist(),
-                    rotation=90,
-                    hole=0.5,
-                    marker_colors=quadrant_colors,
-                    text=quadrant_text,
-                    textinfo="text",
-                    hoverinfo="skip",
-                ),
-            ],
-            layout=go.Layout(
-                showlegend=False,
-                margin=dict(b = 0,t= 50,l=5,r=5),
-                width=350,
-                height=350,
-                paper_bgcolor=plot_bgcolor,
-                annotations=[
-                    go.layout.Annotation(
-                        text=f"<b>Niveau de remboursement :</b><br>{current_value}%",
-                        x=0.5, xanchor="center", xref="paper",
-                        y=0.2, yanchor="bottom", yref="paper",
-                        showarrow=False,
-                    )
-                ],
-                shapes=[
-                    go.layout.Shape(
-                        type="circle",
-                        x0=0.48, x1=0.52,
-                        y0=0.48, y1=0.52,
-                        fillcolor="#333",
-                        line_color="#333",
+        def JaugeClient (result2) :
+            plot_bgcolor = "#def"
+            quadrant_colors = [plot_bgcolor, "#2bad4e", "#85e043", "#f2a529", "#f25829"] 
+            quadrant_text = ["", "<b>Very High</b>", "<b>High</b>", "<b>Low</b>", "<b>Very Low</b>"]
+            n_quadrants = len(quadrant_colors) - 1
+            
+            current_value = result2
+            min_value = 0
+            max_value = 100
+            hand_length = np.sqrt(2) / 4
+            hand_angle = np.pi * (1 - (max(min_value, min(max_value, current_value)) - min_value) / (max_value - min_value))
+            
+            fig = go.Figure(
+                data=[
+                    go.Pie(
+                        values=[0.5] + (np.ones(n_quadrants) / 2 / n_quadrants).tolist(),
+                        rotation=90,
+                        hole=0.5,
+                        marker_colors=quadrant_colors,
+                        text=quadrant_text,
+                        textinfo="text",
+                        hoverinfo="skip",
                     ),
-                    go.layout.Shape(
-                        type="line",
-                        x0=0.5, x1=0.5 + hand_length * np.cos(hand_angle),
-                        y0=0.5, y1=0.5 + hand_length * np.sin(hand_angle),
-                        line=dict(color="#333", width=4)
-                    )
-                ]
+                ],
+                layout=go.Layout(
+                    showlegend=False,
+                    margin=dict(b = 0,t= 50,l=5,r=5),
+                    width=350,
+                    height=350,
+                    paper_bgcolor=plot_bgcolor,
+                    annotations=[
+                        go.layout.Annotation(
+                            text=f"<b>Niveau de remboursement :</b><br>{current_value}%",
+                            x=0.5, xanchor="center", xref="paper",
+                            y=0.2, yanchor="bottom", yref="paper",
+                            showarrow=False,
+                        )
+                    ],
+                    shapes=[
+                        go.layout.Shape(
+                            type="circle",
+                            x0=0.48, x1=0.52,
+                            y0=0.48, y1=0.52,
+                            fillcolor="#333",
+                            line_color="#333",
+                        ),
+                        go.layout.Shape(
+                            type="line",
+                            x0=0.5, x1=0.5 + hand_length * np.cos(hand_angle),
+                            y0=0.5, y1=0.5 + hand_length * np.sin(hand_angle),
+                            line=dict(color="#333", width=4)
+                        )
+                    ]
+                )
             )
-        )
-
+            return st.plotly_chart(fig)
+        
         col1, col2 = st.columns(2) # Division en colonne pour centrer l'image.
         with col2 :
-            st.plotly_chart(fig)
+            JaugeClient (result2)
             
         with col1 :
             if result2 >= 50:
-                image = Image.open('PouceVert.png')
-                st.image(image, width=300)
+                OpenPicture('PouceVert.png', 300)
             if result2 < 50:
-                image = Image.open('PouceRouge.png')
-                st.image(image, width=300)
+                OpenPicture('PouceRouge.png', 300)
     
         # Feature importance globale :
         st.markdown("<h2 style='text-align: center; color: green;'>Feature Importance Globale :</h1>", unsafe_allow_html=True)
-        image = Image.open('SHAPGlobale.png')
-        st.image(image, width = 600)
+        OpenPicture('SHAPGlobale.png', 600)
     
         # Feature importance locale :
         st.markdown("<h2 style='text-align: center; color: green;'>Feature Importance Locale :</h1>", unsafe_allow_html=True)
-            # Explainer :
-        explainer = shap.TreeExplainer(loaded_model, OldData)
-            # Visualisation :
-        shap_values = explainer(DataClient, check_additivity=False)
-        shap.waterfall_plot(shap_values[0], max_display = 10)
-        st.set_option('deprecation.showPyplotGlobalUse', False) # Option pour enlever l'erreur PyplotGlobalUseWarning
+            
+        # Explainer + Visualisation :
+        def ShapLocale(loaded_model, OldData) :
+            explainer = shap.TreeExplainer(loaded_model, OldData)
+            shap_values = explainer(DataClient, check_additivity=False)
+            return shap_values[0]
         
+        ShapValues = ShapLocale(loaded_model, OldData)
+                     
+        shap.waterfall_plot(ShapValues, max_display = 10)
+        st.set_option('deprecation.showPyplotGlobalUse', False) # Option pour enlever l'erreur PyplotGlobalUseWarning
         st.pyplot(bbox_inches = 'tight')
         
         # Récupération des variables importantes du client :
-        Columns = DataClient.columns
-        BestVariables = pd.DataFrame(zip(shap_values[0].values, Columns))
-        BestVariables[0] = abs(BestVariables[0]).round(2)
-        BestVariables = BestVariables.sort_values(0, ascending = False)
-        BestVariables = list(BestVariables.iloc[:15][1])
-        BestVariables.insert(0, ' ')
+        def GoodVariables(ShapValues, OldData):
+            Columns = DataClient.columns
+            BestVariables = pd.DataFrame(zip(ShapLocale(loaded_model, OldData).values, Columns))
+            BestVariables[0] = abs(BestVariables[0]).round(2)
+            BestVariables = BestVariables.sort_values(0, ascending = False)
+            BestVariables = list(BestVariables.iloc[:15][1])
+            BestVariables.insert(0, ' ')
+            return BestVariables
         
         # Création de la colonnes predict_proba pour toute la DF :
         Target = OldData['TARGET']
@@ -242,24 +258,27 @@ if option == "Informations Clients" :
         # Analyse graphique de deux variables au choix :
         st.markdown("<h2 style='text-align: center; color: green;'>Analyses des variables importantes :</h1>", unsafe_allow_html=True)
     
-        Var1 = st.selectbox('Veuillez choisir la variable N°1 : ', BestVariables)
-        Var2 = st.selectbox('Veuillez choisir la variable N°2 : ', BestVariables)
+        Var1 = st.selectbox('Veuillez choisir la variable N°1 : ', GoodVariables(ShapValues, OldData))
+        Var2 = st.selectbox('Veuillez choisir la variable N°2 : ', GoodVariables(ShapValues, OldData))
         
         if Var1 == ' ' or Var2 == ' ' :
             st.write('')
         
         else :
+            def GoodPlots(Var1, Var2) :
+                fig = plt.figure(figsize = (10,8))
+                ax = fig.subplot_mosaic("""
+                                        AB
+                                        CC
+                                        """)
+                sns.kdeplot(OldData, x = Var1, hue = Target, multiple="stack", ax = ax['A'])
+                ax["A"].axvline(DataClient[Var1].values, linewidth = 2, color='r')
+                sns.kdeplot(OldData, x = Var2, hue = Target, multiple="stack", ax = ax['B'])
+                ax["B"].axvline(DataClient[Var2].values, linewidth = 2, color='r')
+                ax['C'] = sns.scatterplot(OldData, x = Var1, y = Var2, hue = listresult, palette="blend:red,green")
+                ax['C'] = sns.scatterplot(DataClient, x = Var1, y = Var2, s=400, hue = Var2, palette = ['blue'], marker = '*')
+                ax['C'] = plt.legend('')
+                return st.pyplot(fig)
             
-            fig = plt.figure(figsize = (10,8))
-            ax = fig.subplot_mosaic("""
-                                    AB
-                                    CC
-                                    """)
-            sns.kdeplot(OldData, x = Var1, hue = Target, multiple="stack", ax = ax['A'])
-            ax["A"].axvline(DataClient[Var1].values, linewidth = 2, color='r')
-            sns.kdeplot(OldData, x = Var2, hue = Target, multiple="stack", ax = ax['B'])
-            ax["B"].axvline(DataClient[Var2].values, linewidth = 2, color='r')
-            ax['C'] = sns.scatterplot(OldData, x = Var1, y = Var2, hue = listresult, palette="blend:red,green")
-            ax['C'] = sns.scatterplot(DataClient, x = Var1, y = Var2, s=400, hue = Var2, palette = ['blue'], marker = '*')
-            ax['C'] = plt.legend('')
-            st.pyplot(fig)
+            GoodPlots(Var1, Var2)
+            
