@@ -132,7 +132,7 @@ def GoodVariables(ShapValues, OldData):
     return BestVariables
 
 # Plots finaux :
-def GoodPlots(Var1, Var2, Target, OldData, DataClient) :
+def GoodPlots(Var1, Var2, Target, OldData, DataClient, listresult) :
     custom_legends = [Line2D([0], [0], marker='o', color='w', label='1',
                           markerfacecolor='g'),
                 Line2D([0], [0], marker='o', color='w', label='0',
@@ -303,5 +303,5 @@ if option == "Informations Clients" :
             st.write('')
         
         else :            
-            GoodPlots(Var1, Var2, Target, OldData, DataClient)
+            GoodPlots(Var1, Var2, Target, OldData, DataClient, listresult)
             
