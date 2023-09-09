@@ -30,7 +30,8 @@ def load_data(url):
     df = pd.read_csv(url)
     return df
 
-OldData = load_data("C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\OldDataP7s.csv")
+
+OldData = load_data("OldDataP7s.csv")
 Variables = list(OldData.columns)
 
 # Création d'onglets :
@@ -54,7 +55,7 @@ if option == "Page d'accueil" :
     # Logo Entreprise :
     col1, col2, col3, col4 = st.columns(4) # Division en colonne pour centrer l'image.
     with col2 :
-        OpenPicture('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\LogoEntreprise.png', 300)
+        OpenPicture('LogoEntreprise.png', 300)
 
         
     st.markdown('')
