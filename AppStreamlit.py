@@ -132,18 +132,20 @@ def GoodVariables(ShapValues, OldData):
     return BestVariables
 
 # Plots finaux :
-def GoodPlots(Var1, Var2, Target, OldData, DataClient) :
-    custom_legends = [Line2D([0], [0], color = 'r', lw=4, label = 0, marker='o'),
-                Line2D([0], [0], color = 'g', lw=4, label = 1, marker='o')]
+def GoodPlots(Var1, Var2, Target, OldData) :
+    custom_legends = [Line2D([0], [0], marker='o', color='w', label='1',
+                          markerfacecolor='g'),
+                Line2D([0], [0], marker='o', color='w', label='0',
+                          markerfacecolor='r')]
     fig = plt.figure(figsize = (10,8))
     ax = fig.subplot_mosaic("""
                             AB
                             CC
                             """)
     sns.kdeplot(OldData, x = Var1, hue = Target, multiple="stack", ax = ax['A'])
-    ax["A"].axvline(DataClient[Var1].values, color='r')
+    ax["A"].axvline(DataClient[Var1].values, linewidth = 2, color='r')
     sns.kdeplot(OldData, x = Var2, hue = Target, multiple="stack", ax = ax['B'])
-    ax["B"].axvline(DataClient[Var2].value, color='r')
+    ax["B"].axvline(DataClient[Var2].values, linewidth = 2, color='r')
     ax['C'] = sns.scatterplot(OldData, x = Var1, y = Var2, hue = listresult, palette="blend:red,green")
     ax['C'] = sns.scatterplot(DataClient, x = Var1, y = Var2, s=400, hue = Var2, palette = ['blue'], marker = '*')
     ax['C'] = plt.legend(handles = custom_legends)
@@ -301,5 +303,5 @@ if option == "Informations Clients" :
             st.write('')
         
         else :            
-            GoodPlots(Var1, Var2, Target, OldData, DataClient)
+            GoodPlots(Var1, Var2, Target, OldData)
             
