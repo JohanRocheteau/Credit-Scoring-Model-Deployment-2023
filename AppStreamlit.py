@@ -89,8 +89,12 @@ if option == "Informations Clients" :
         listeNC.insert(0, ' ')
         return listeNC, listNewClients
     
-    listeNC = ListeNewClient('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\listNewClients.csv')[0]
-    listNewClients = ListeNewClient('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\listNewClients.csv')[1]
+    try :
+        listeNC = ListeNewClient('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\listNewClients.csv')[0]
+        listNewClients = ListeNewClient('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\listNewClients.csv')[1]
+    except :
+        listeNC = ListeNewClient('listNewClients.csv')[0]
+        listNewClients = ListeNewClient('listNewClients.csv')[1]
     
         # Séléction d'un client par le chargé de clientel :
     def ChoixClient (listeNC) :
