@@ -35,7 +35,7 @@ jobs:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       
       - name: Verify Heroku CLI Installation
-        run: C:\Program Files\heroku\bin\heroku.exe --version
+        run: "C:\\Program Files\\heroku\\bin\\heroku.exe --version"
       
       - name: Deploy to Heroku
-        run: C:\Program Files\heroku\bin\heroku.exe container:push web -a prediction-app-p7
+        run: "C:\\Program Files\\heroku\\bin\\heroku.exe container:push web -a prediction-app-p7"
