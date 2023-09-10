@@ -23,11 +23,16 @@ jobs:
       - name: Run unit tests
         run: python -m pytest
         
-      - uses: akhileshns/heroku-deploy@v3.12.14
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "prediction-app-p7"
-          heroku_email: "johan.rocheteau@hotmail.fr"
+      - name: Configure Heroku CLI
+    run: |
+      echo machine api.heroku.com > %USERPROFILE%\.netrc
+      echo   login johan.rocheteau@hotmail.fr >> %USERPROFILE%\.netrc
+      echo   password $HEROKU_API_KEY >> %USERPROFILE%\.netrc
+      echo machine git.heroku.com >> %USERPROFILE%\.netrc
+      echo   login johan.rocheteau@hotmail.fr >> %USERPROFILE%\.netrc
+      echo   password $HEROKU_API_KEY >> %USERPROFILE%\.netrc
+    env:
+      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       
       - name: Deploy to Heroku
         run: heroku container:push web -a prediction-app-p7
