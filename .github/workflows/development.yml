@@ -10,7 +10,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -19,30 +19,31 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
-      
+
       - name: Run unit tests
         run: python -m pytest
-        
-      - name: Configure Heroku CLI
-        run: |
-          echo machine api.heroku.com > $env:USERPROFILE\.netrc
-          echo   login johan.rocheteau@hotmail.fr >> $env:USERPROFILE\.netrc
-          echo   password $HEROKU_API_KEY >> $env:USERPROFILE\.netrc
-          echo machine git.heroku.com >> $env:USERPROFILE\.netrc
-          echo   login johan.rocheteau@hotmail.fr >> $env:USERPROFILE\.netrc
-          echo   password $HEROKU_API_KEY >> $env:USERPROFILE\.netrc
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      
+
       - name: Add Heroku CLI to PATH
         run: |
           Add-Content -Path $PROFILE.AllUsersAllHosts -Value 'Set-Item -Path env:Path -Value "$env:Path;C:\Program Files\heroku\bin"' -Force
           $env:Path += ";C:\Program Files\heroku\bin"
-          
+
       - name: Verify Heroku CLI Installation
-        run: heroku --version
-      
+        run: C:\Program Files\heroku\bin\heroku.cmd --version
+
+      - name: Configure Heroku CLI
+        run: |
+          echo machine api.heroku.com > %USERPROFILE%\.netrc
+          echo   login johan.rocheteau@hotmail.fr >> %USERPROFILE%\.netrc
+          echo   password $HEROKU_API_KEY >> %USERPROFILE%\.netrc
+          echo machine git.heroku.com >> %USERPROFILE%\.netrc
+          echo   login johan.rocheteau@hotmail.fr >> %USERPROFILE%\.netrc
+          echo   password $HEROKU_API_KEY >> %USERPROFILE%\.netrc
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+
       - name: Deploy to Heroku
-        run: heroku container:push web -a prediction-app-p7
+        run: C:\Program Files\heroku\bin\heroku.cmd container:push web -a prediction-app-p7
+
 
 
