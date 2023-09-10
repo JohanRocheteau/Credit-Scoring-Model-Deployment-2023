@@ -1,0 +1,26 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    runs-on: windows-latest
+
+    steps:
+      - name: Development Code
+        uses: actions/checkout@v2
+        
+      - name: Use Python 3.11.4
+        uses: actions/setup-python@v2
+        with:
+          node-version: 3.11.4
+          
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.14 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "prediction-app-p7"
+          heroku_email: "johan.rocheteau@hotmail.fr"
