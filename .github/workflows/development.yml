@@ -36,7 +36,7 @@ jobs:
       
       - name: Add Heroku CLI to PATH
         run: |
-          echo 'C:\Program Files\heroku\bin' >> $env:PATH
+          echo C:\Program Files\heroku\bin >> $env:PATH
           
       - name: Verify Heroku CLI Installation
         run: heroku --version
