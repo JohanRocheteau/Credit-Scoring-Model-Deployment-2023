@@ -25,8 +25,10 @@ jobs:
 
       - name: Install Heroku CLI
         run: |
-          curl https://cli-assets.heroku.com/install.ps1 | powershell -command -
-        
+          Invoke-WebRequest -Uri https://cli-assets.heroku.com/install.ps1 -OutFile heroku-install.ps1
+          .\heroku-install.ps1 -Verb RunAs
+          Remove-Item -Path heroku-install.ps1
+
       - name: Configure Heroku CLI
         run: |
           echo machine api.heroku.com > $env:USERPROFILE\.netrc
@@ -39,7 +41,7 @@ jobs:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
 
       - name: Verify Heroku CLI Installation
-        run: "C:\\Program Files\\heroku\\bin\\heroku.cmd --version"
+        run: heroku --version
 
       - name: Deploy to Heroku
         run: heroku container:push web -a prediction-app-p7
