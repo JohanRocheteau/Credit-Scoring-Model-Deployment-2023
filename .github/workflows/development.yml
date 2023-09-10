@@ -34,10 +34,8 @@ jobs:
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       
-      - name: Add Heroku CLI to PATH
-        run: |
-          echo 'export PATH="/usr/local/heroku/bin:$PATH"' >> $HOME/.bashrc
-        if: runner.os == 'Linux'
+      - name: Verify Heroku CLI Installation
+        run: C:\Program Files\heroku\bin\heroku.exe --version
       
       - name: Deploy to Heroku
-        run: heroku container:push web -a prediction-app-p7
+        run: C:\Program Files\heroku\bin\heroku.exe container:push web -a prediction-app-p7
