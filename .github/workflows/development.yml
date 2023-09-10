@@ -23,27 +23,23 @@ jobs:
       - name: Run unit tests
         run: python -m pytest
 
-      - name: Add Heroku CLI to PATH
+      - name: Install Heroku CLI
         run: |
-          Add-Content -Path $PROFILE.AllUsersAllHosts -Value 'Set-Item -Path env:Path -Value "$env:Path;C:\Program Files\heroku\bin"' -Force
-          $env:Path += ";C:\Program Files\heroku\bin"
-
-      - name: Verify Heroku CLI Installation
-        run: C:\Program Files\heroku\bin\heroku.cmd --version
-
+          curl https://cli-assets.heroku.com/install.ps1 | powershell -command -
+        
       - name: Configure Heroku CLI
         run: |
-          echo machine api.heroku.com > %USERPROFILE%\.netrc
-          echo   login johan.rocheteau@hotmail.fr >> %USERPROFILE%\.netrc
-          echo   password $HEROKU_API_KEY >> %USERPROFILE%\.netrc
-          echo machine git.heroku.com >> %USERPROFILE%\.netrc
-          echo   login johan.rocheteau@hotmail.fr >> %USERPROFILE%\.netrc
-          echo   password $HEROKU_API_KEY >> %USERPROFILE%\.netrc
+          echo machine api.heroku.com > $env:USERPROFILE\.netrc
+          echo   login johan.rocheteau@hotmail.fr >> $env:USERPROFILE\.netrc
+          echo   password $env:HEROKU_API_KEY >> $env:USERPROFILE\.netrc
+          echo machine git.heroku.com >> $env:USERPROFILE\.netrc
+          echo   login johan.rocheteau@hotmail.fr >> $env:USERPROFILE\.netrc
+          echo   password $env:HEROKU_API_KEY >> $env:USERPROFILE\.netrc
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
 
+      - name: Verify Heroku CLI Installation
+        run: "C:\\Program Files\\heroku\\bin\\heroku.cmd --version"
+
       - name: Deploy to Heroku
-        run: C:\Program Files\heroku\bin\heroku.cmd container:push web -a prediction-app-p7
-
-
-
+        run: heroku container:push web -a prediction-app-p7
