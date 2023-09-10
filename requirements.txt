@@ -11,3 +11,4 @@ ipython
 Flask
 gunicorn
 lightgbm
+pytest
