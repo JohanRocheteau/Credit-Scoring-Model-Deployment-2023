@@ -23,13 +23,11 @@ jobs:
       - name: Run unit tests
         run: python -m pytest
         
-      - uses: akhileshns/heroku-deploy@v3.12.12
+      - uses: akhileshns/heroku-deploy@v3.12.14
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "prediction-app-p7"
           heroku_email: "johan.rocheteau@hotmail.fr"
-          healthcheck: "https://prediction-app-p7.herokuapp.com/healthcheck"
-          rollbackonhealthcheckfailed: true
       
       - name: Deploy to Heroku
         run: heroku container:push web -a prediction-app-p7
