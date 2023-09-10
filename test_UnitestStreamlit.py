@@ -14,7 +14,10 @@ sys.path.append(parent_dir)
 from AppStreamlit import load_data, OpenPicture, ListeNewClient, GoodPlots
 
 def test_load_data(): # bon format de la DF
-    url = "C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\OldDataP7s.csv"
+    try :
+        url = "C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\OldDataP7s.csv"
+    except :
+        url = "OldDataP7s.csv"
     df = load_data(url)
     assert isinstance(df, pd.DataFrame) # si l'objet uploadé est une DF
     assert df.shape[1] == 560 # si l'objet à bien 560 colonnes (ne marche pas avec la DF initiale)
@@ -26,7 +29,10 @@ def picture_ok(): # Vérification de l'ouverture des photos :
     assert pic1 is not None
 
 def test_liste_new_client():
-    listecsv = "C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\listNewClients.csv"
+    try :
+        listecsv = "C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\listNewClients.csv"
+    except :
+        listecsv = "listNewClients.csv"
     listeNC, _ = ListeNewClient(listecsv)
     assert listeNC
     assert isinstance(listeNC, list)
