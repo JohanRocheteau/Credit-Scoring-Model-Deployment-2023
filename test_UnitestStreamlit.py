@@ -41,8 +41,13 @@ def test_liste_new_client():
 def test_good_plots():
     Var1 = 'DAYS_EMPLOYED'
     Var2 = 'EXT_SOURCE_3'
-    OldData = pd.read_csv("C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\OldDataP7s.csv")
-    DataClient = pd.read_csv('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\NewDataP7.csv', nrows = 1)
+    try :
+        OldData = pd.read_csv("C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\OldDataP7s.csv")
+        DataClient = pd.read_csv('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\NewDataP7.csv', nrows = 1)
+    except :
+        OldData = pd.read_csv("OldDataP7s.csv")
+        DataClient = pd.read_csv('NewDataP7.csv', nrows = 1)
+        
     Target = OldData['TARGET']
     # fausse listresult :
     listresult = list(np.random.randint(0, 101, 8310))
