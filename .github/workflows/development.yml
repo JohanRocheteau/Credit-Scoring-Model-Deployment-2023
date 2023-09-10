@@ -33,6 +33,10 @@ jobs:
           echo "  password $HEROKU_API_KEY" >> ~/.netrc
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        
+
+      - name: Install Heroku CLI
+        run: |
+          curl https://cli-assets.heroku.com/install.ps1 | powershell -command -
+      
       - name: Deploy to Heroku
         run: heroku container:push web -a prediction-app-p7
