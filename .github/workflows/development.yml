@@ -24,15 +24,18 @@ jobs:
         run: python -m pytest
         
       - name: Configure Heroku CLI
-    run: |
-      echo machine api.heroku.com > %USERPROFILE%\.netrc
-      echo   login johan.rocheteau@hotmail.fr >> %USERPROFILE%\.netrc
-      echo   password $HEROKU_API_KEY >> %USERPROFILE%\.netrc
-      echo machine git.heroku.com >> %USERPROFILE%\.netrc
-      echo   login johan.rocheteau@hotmail.fr >> %USERPROFILE%\.netrc
-      echo   password $HEROKU_API_KEY >> %USERPROFILE%\.netrc
-    env:
-      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: |
+          echo machine api.heroku.com > %USERPROFILE%\.netrc
+          echo   login johan.rocheteau@hotmail.fr >> %USERPROFILE%\.netrc
+          echo   password $HEROKU_API_KEY >> %USERPROFILE%\.netrc
+          echo machine git.heroku.com >> %USERPROFILE%\.netrc
+          echo   login johan.rocheteau@hotmail.fr >> %USERPROFILE%\.netrc
+          echo   password $HEROKU_API_KEY >> %USERPROFILE%\.netrc
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      
+      - name: Deploy to Heroku
+        run: heroku container:push web -a prediction-app-p7
       
       - name: Deploy to Heroku
         run: heroku container:push web -a prediction-app-p7
