@@ -36,11 +36,13 @@ jobs:
       
       - name: Add Heroku CLI to PATH
         run: |
-          echo C:\Program Files\heroku\bin >> $env:PATH
+          Add-Content -Path $PROFILE.AllUsersAllHosts -Value 'Set-Item -Path env:Path -Value "$env:Path;C:\Program Files\heroku\bin"' -Force
+          $env:Path += ";C:\Program Files\heroku\bin"
           
       - name: Verify Heroku CLI Installation
         run: heroku --version
       
       - name: Deploy to Heroku
         run: heroku container:push web -a prediction-app-p7
+
 
