@@ -1,4 +1,4 @@
-name: Deploiement
+name: Deploiement et verification tests
 
 on:
   push:
