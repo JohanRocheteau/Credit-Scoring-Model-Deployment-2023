@@ -236,7 +236,7 @@ if option == "Informations Clients" :
         # Titre
         st.markdown("<h2 style='text-align: center; color: green;'>  Résultats du prêt :</h1>", unsafe_allow_html=True)
          
-        # Résultats models avec l'API FLASK reliée à MLFLOW :
+        # Résultats models avec l'API FLASK reliée à pickle :
         url = 'https://prediction-app-p7-6a2e12152edf.herokuapp.com/api/'
         
         Variables.remove('TARGET')
@@ -274,7 +274,7 @@ if option == "Informations Clients" :
         try :
             OpenPicture('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\SHAPGlobale.png', 600)
         except :
-            OpenPicture('SHAPGlobale.png', 600)
+            OpenPicture('SHAPGlobale.png', 700)
 
         # Feature importance locale :
         st.markdown("<h2 style='text-align: center; color: green;'>Feature Importance Locale :</h1>", unsafe_allow_html=True)
