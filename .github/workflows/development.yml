@@ -22,26 +22,3 @@ jobs:
 
       - name: Run unit tests
         run: python -m pytest
-
-      - name: Install Heroku CLI
-        run: |
-          Invoke-WebRequest -Uri https://cli-assets.heroku.com/install.ps1 -OutFile heroku-install.ps1
-          .\heroku-install.ps1 -Verb RunAs
-          Remove-Item -Path heroku-install.ps1
-
-      - name: Configure Heroku CLI
-        run: |
-          echo machine api.heroku.com > $env:USERPROFILE\.netrc
-          echo   login johan.rocheteau@hotmail.fr >> $env:USERPROFILE\.netrc
-          echo   password $env:HEROKU_API_KEY >> $env:USERPROFILE\.netrc
-          echo machine git.heroku.com >> $env:USERPROFILE\.netrc
-          echo   login johan.rocheteau@hotmail.fr >> $env:USERPROFILE\.netrc
-          echo   password $env:HEROKU_API_KEY >> $env:USERPROFILE\.netrc
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-
-      - name: Verify Heroku CLI Installation
-        run: heroku --version
-
-      - name: Deploy to Heroku
-        run: heroku container:push web -a prediction-app-p7
