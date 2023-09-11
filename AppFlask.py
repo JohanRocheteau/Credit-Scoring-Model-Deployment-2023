@@ -6,8 +6,12 @@ import pickle
 
 app = Flask(__name__)
 
-# Load the model
-model = pickle.load(open('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\ModelGrid.sav', 'rb'))
+# Load the model :
+try :
+    model = pickle.load(open('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\ModelGrid.sav', 'rb'))
+except :
+    model = pickle.load(open('ModelGrid.sav', 'rb'))
+
 #model_uri = 'C:/Users/Johan/Formation Data Science/Projet 7/ProjetDSN7/mlruns/147706606138918750/90f65f93ef0347deb4a45c6249b7a673/artifacts/sklearn-model'
 #model = mlflow.sklearn.load_model(model_uri)
 
