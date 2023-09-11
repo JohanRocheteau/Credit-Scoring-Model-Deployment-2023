@@ -23,15 +23,24 @@ data3 = [[1.0, 0.0, 0.0, 0.0, 99000.0, 225000.0, 19242.0, 225000.0, 0.0072739999
 
 def test_predict_endpoint1(client):
     response = client.post('/api/', json = data)
+    result = int(round(float(response.text.split(' ')[1].split(']]')[0]),2)*100)
+    print(result)
     assert response.status_code == 200
+    assert result == 32
 
 def test_predict_endpoint2(client):
     response = client.post('/api/', json = data2)
+    result = int(round(float(response.text.split(' ')[1].split(']]')[0]),2)*100)
+    print(result)
     assert response.status_code == 200
+    assert result == 63
     
 def test_predict_endpoint3(client):
     response = client.post('/api/', json = data3)
+    result = int(round(float(response.text.split(' ')[1].split(']]')[0]),2)*100)
+    print(result)
     assert response.status_code == 200
+    assert result == 38
 
 if __name__ == '__main__':
     pytest.main()

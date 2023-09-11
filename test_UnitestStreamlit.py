@@ -21,12 +21,6 @@ def test_load_data(): # bon format de la DF
     assert isinstance(df, pd.DataFrame) # si l'objet uploadé est une DF
     assert df.shape[1] == 560 # si l'objet à bien 560 colonnes (ne marche pas avec la DF initiale)
 
-def picture_ok(): # Vérification de l'ouverture des photos :
-    url1 = 'C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\LogoEntreprise.png'
-    pic1 = OpenPicture(url1)
-    assert isinstance(pic1, Image.Image)
-    assert pic1 is not None
-
 def test_liste_new_client():
     try :
         listeNC, _ = ListeNewClient("C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\listNewClients.csv")
