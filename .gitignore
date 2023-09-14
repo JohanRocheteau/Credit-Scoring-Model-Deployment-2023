@@ -162,3 +162,5 @@ cython_debug/
 # Fichiers personnalisés à ignorer
 NewDataP7.csv
 OldDataP7.csv
+mlruns/
+
