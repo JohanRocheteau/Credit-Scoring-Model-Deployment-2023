@@ -163,4 +163,5 @@ cython_debug/
 NewDataP7.csv
 OldDataP7.csv
 mlruns/
+sk-learn-LGBMClassifier/
 
