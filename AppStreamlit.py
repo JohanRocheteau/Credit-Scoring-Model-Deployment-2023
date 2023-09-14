@@ -210,7 +210,7 @@ if option == "Informations Clients" :
         IndexOther.remove(0)
         
             # Slice du client sur la DF NewClient (moins lourd à ouvrir)
-        DataClient = pd.read_csv('NewDataP7.csv', skiprows = IndexOther, nrows = 1)
+        DataClient = pd.read_csv('ShortNewDataP7.csv', skiprows = IndexOther, nrows = 1)
         DataClient = DataClient.rename(columns = lambda x:re.sub('[^A-Za-z0-9_]+', '', x))
         NumClient = DataClient['SK_ID_CURR'].values
         for i in NumClient:
