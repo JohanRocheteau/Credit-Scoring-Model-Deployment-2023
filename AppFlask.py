@@ -12,10 +12,6 @@ try :
 except :
     model = pickle.load(open('ModelGrid.sav', 'rb'))
 
-#model_uri = 'C:/Users/Johan/Formation Data Science/Projet 7/ProjetDSN7/mlruns/147706606138918750/90f65f93ef0347deb4a45c6249b7a673/artifacts/sklearn-model'
-#model = mlflow.sklearn.load_model(model_uri)
-
-
 @app.route('/api/',methods=['POST'])
 
 def predict():
@@ -30,6 +26,5 @@ def predict():
     return prediction
 
 if __name__ == '__main__':
-    #model = mlflow.sklearn.load_model(model_uri)
     
     app.run(host="0.0.0.0", port=3000, debug=True)
