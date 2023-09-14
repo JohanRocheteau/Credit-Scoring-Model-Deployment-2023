@@ -34,10 +34,10 @@ def test_good_plots():
     Var2 = 'EXT_SOURCE_3'
     try :
         OldData = pd.read_csv("C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\OldDataP7s.csv")
-        DataClient = pd.read_csv('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\NewDataP7.csv', nrows = 1)
+        DataClient = pd.read_csv('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\ShortNewDataP7.csv', nrows = 1)
     except :
         OldData = pd.read_csv("OldDataP7s.csv")
-        DataClient = pd.read_csv('NewDataP7.csv', nrows = 1)
+        DataClient = pd.read_csv('ShortNewDataP7.csv', nrows = 1)
         
     Target = OldData['TARGET']
     # fausse listresult :
