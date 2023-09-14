@@ -211,7 +211,6 @@ if option == "Informations Clients" :
         
             # Slice du client sur la DF NewClient (moins lourd à ouvrir)
         DataClient = pd.read_csv('ShortNewDataP7.csv', skiprows = IndexOther, nrows = 1)
-        st.write(DataClient.shape[1])
         DataClient = DataClient.rename(columns = lambda x:re.sub('[^A-Za-z0-9_]+', '', x))
         NumClient = DataClient['SK_ID_CURR'].values
         for i in NumClient:
@@ -257,12 +256,12 @@ if option == "Informations Clients" :
             JaugeClient (result2)
             
         with col1 :
-            if result2 >= 50:
+            if result2 >= 92:
                 try : 
                     OpenPicture('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\PouceVert.png', 300)
                 except :
                     OpenPicture('PouceVert.png', 300)
-            if result2 < 50:
+            if result2 < 92:
                 try :
                     OpenPicture('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\PouceRouge.png', 300)
                 except :
