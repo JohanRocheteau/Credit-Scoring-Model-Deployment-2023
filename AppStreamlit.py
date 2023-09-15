@@ -59,8 +59,8 @@ def ListeNewClient (listecsv):
 # Graphique jauge :     
 def JaugeClient (result2) :
     plot_bgcolor = "#def"
-    quadrant_colors = [plot_bgcolor, "#2bad4e", "#85e043", "#f2a529", "#f25829"] 
-    quadrant_text = ["", "<b>Very High</b>", "<b>High</b>", "<b>Low</b>", "<b>Very Low</b>"]
+    quadrant_colors = [plot_bgcolor, "#2bad4e", "#fdee00", "#f2a529", "#f25829"] 
+    quadrant_text = ["", "<b>Good</b>", "<b>low</b>", "<b>Very Low</b>", "<b>Ultra Low</b>"]
     n_quadrants = len(quadrant_colors) - 1
     
     current_value = result2
