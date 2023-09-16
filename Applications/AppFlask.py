@@ -8,9 +8,9 @@ app = Flask(__name__)
 
 # Load the model :
 try :
-    model = pickle.load(open('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\ModelGrid.sav', 'rb'))
+    model = pickle.load(open(r'C:\Users\Johan\Formation Data Science\Projet 7\ProjetDSN7\Applications\Donneesgenerees\ModelGrid.sav', 'rb'))
 except :
-    model = pickle.load(open('ModelGrid.sav', 'rb'))
+    model = pickle.load(open('Applications\Donneesgenerees\ModelGrid.sav', 'rb'))
 
 @app.route('/api/',methods=['POST'])
 
