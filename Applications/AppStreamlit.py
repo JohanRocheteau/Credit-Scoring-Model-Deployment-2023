@@ -30,9 +30,9 @@ def load_data(url):
     return df
 
 try : # for pytest
-    OldData = load_data("C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\OldDataP7s.csv")
+    OldData = load_data(r"C:\Users\Johan\Formation Data Science\Projet 7\ProjetDSN7\Applications\Donneesgenerees\OldDataP7s.csv")
 except : # for streamlit online
-    OldData = load_data("OldDataP7s.csv")
+    OldData = load_data("Applications\Donneesgenerees\OldDataP7s.csv")
 
 
 Variables = list(OldData.columns)
@@ -163,9 +163,9 @@ if option == "Page d'accueil" :
     col1, col2, col3, col4 = st.columns(4) # Division en colonne pour centrer l'image.
     with col2 :
         try :
-            OpenPicture('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\LogoEntreprise.png', 300)
+            OpenPicture(r'C:\Users\Johan\Formation Data Science\Projet 7\ProjetDSN7\Applications\Images\LogoEntreprise.png', 300)
         except :
-            OpenPicture('LogoEntreprise.png', 300)
+            OpenPicture(r'Applications\Images\LogoEntreprise.png', 300)
 
     st.markdown('')
     st.markdown('')
@@ -184,11 +184,11 @@ if option == "Informations Clients" :
 
     # N° de client : 
     try :
-        listeNC = ListeNewClient('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\listNewClients.csv')[0]
-        listNewClients = ListeNewClient('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\listNewClients.csv')[1]
+        listeNC = ListeNewClient(r'C:\Users\Johan\Formation Data Science\Projet 7\ProjetDSN7\Applications\Donneesgenerees\listNewClients.csv')[0]
+        listNewClients = ListeNewClient(r'C:\Users\Johan\Formation Data Science\Projet 7\ProjetDSN7\Applications\Donneesgenerees\listNewClients.csv')[1]
     except :
-        listeNC = ListeNewClient('listNewClients.csv')[0]
-        listNewClients = ListeNewClient('listNewClients.csv')[1]
+        listeNC = ListeNewClient(r'Applications\Donneesgenerees\listNewClients.csv')[0]
+        listNewClients = ListeNewClient(r'Applications\Donneesgenerees\listNewClients.csv')[1]
     
         # Séléction d'un client par le chargé de clientel :
     def ChoixClient (listeNC) :
@@ -210,7 +210,7 @@ if option == "Informations Clients" :
         IndexOther.remove(0)
         
             # Slice du client sur la DF NewClient (moins lourd à ouvrir)
-        DataClient = pd.read_csv('ShortNewDataP7.csv', skiprows = IndexOther, nrows = 1)
+        DataClient = pd.read_csv(r'C:\Users\Johan\Formation Data Science\Projet 7\ProjetDSN7\Applications\Donneesgenerees\ShortNewDataP7.csv', skiprows = IndexOther, nrows = 1)
         DataClient = DataClient.rename(columns = lambda x:re.sub('[^A-Za-z0-9_]+', '', x))
         NumClient = DataClient['SK_ID_CURR'].values
         for i in NumClient:
@@ -247,9 +247,7 @@ if option == "Informations Clients" :
         result2 = int(round(result2,2)*100)
         
         # Si on utilise directement le model de puis un fichier de sauvegarde :
-        loaded_model = pickle.load(open('ModelGrid.sav', 'rb'))
-        #result2 = loaded_model.predict_proba(DataClient)
-        #result2 = int(result2[0][1]*100)
+        loaded_model = pickle.load(open(r'C:\Users\Johan\Formation Data Science\Projet 7\ProjetDSN7\Applications\Donneesgenerees\ModelGrid.sav', 'rb'))
         
         col1, col2 = st.columns(2) # Division en colonne pour centrer l'image.
         with col2 :
@@ -258,22 +256,22 @@ if option == "Informations Clients" :
         with col1 :
             if result2 >= 92:
                 try : 
-                    OpenPicture('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\PouceVert.png', 300)
+                    OpenPicture(r'C:\Users\Johan\Formation Data Science\Projet 7\ProjetDSN7\Applications\Images\PouceVert.png', 300)
                 except :
-                    OpenPicture('PouceVert.png', 300)
+                    OpenPicture(r'Applications\Images\PouceVert.png', 300)
             if result2 < 92:
                 try :
-                    OpenPicture('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\PouceRouge.png', 300)
+                    OpenPicture(r'C:\Users\Johan\Formation Data Science\Projet 7\ProjetDSN7\Applications\Images\PouceRouge.png', 300)
                 except :
-                    OpenPicture('PouceRouge.png', 300)
+                    OpenPicture(r'Applications\Images\PouceRouge.png', 300)
 
     
         # Feature importance globale :
         st.markdown("<h2 style='text-align: center; color: green;'>Feature Importance Globale :</h1>", unsafe_allow_html=True)
         try :
-            OpenPicture('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\SHAPGlobale.png', 600)
+            OpenPicture(r'C:\Users\Johan\Formation Data Science\Projet 7\ProjetDSN7\Applications\Images\SHAPGlobale.png', 600)
         except :
-            OpenPicture('SHAPGlobale.png', 700)
+            OpenPicture(r'Applications\Images\SHAPGlobale.png', 700)
 
         # Feature importance locale :
         st.markdown("<h2 style='text-align: center; color: green;'>Feature Importance Locale :</h1>", unsafe_allow_html=True)

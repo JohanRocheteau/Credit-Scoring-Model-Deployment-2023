@@ -14,17 +14,17 @@ from AppStreamlit import load_data,  ListeNewClient, GoodPlots
 
 def test_load_data(): # bon format de la DF
     try :
-        df = load_data("C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\OldDataP7s.csv")
+        df = load_data(r"C:\Users\Johan\Formation Data Science\Projet 7\ProjetDSN7\Applications\Donneesgenerees\OldDataP7s.csv")
     except :
-        df = load_data("OldDataP7s.csv")
+        df = load_data(r"Applications\Donneesgenerees\OldDataP7s.csv")
     assert isinstance(df, pd.DataFrame) # si l'objet uploadé est une DF
     assert df.shape[1] == 620 # si l'objet à bien 560 colonnes (ne marche pas avec la DF initiale)
 
 def test_liste_new_client():
     try :
-        listeNC, _ = ListeNewClient("C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\listNewClients.csv")
+        listeNC, _ = ListeNewClient(r"C:\Users\Johan\Formation Data Science\Projet 7\ProjetDSN7\Applications\Donneesgenerees\listNewClients.csv")
     except :
-        listeNC, _ = ListeNewClient("listNewClients.csv")
+        listeNC, _ = ListeNewClient(r"Applications\Donneesgenerees\listNewClients.csv")
     assert listeNC
     assert isinstance(listeNC, list)
     assert len(listeNC) > 0
@@ -33,11 +33,11 @@ def test_good_plots():
     Var1 = 'DAYS_EMPLOYED'
     Var2 = 'EXT_SOURCE_3'
     try :
-        OldData = pd.read_csv("C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\OldDataP7s.csv")
-        DataClient = pd.read_csv('C:\\Users\\Johan\\Formation Data Science\\Projet 7\\ProjetDSN7\\ShortNewDataP7.csv', nrows = 1)
+        OldData = pd.read_csv(r"C:\Users\Johan\Formation Data Science\Projet 7\ProjetDSN7\Applications\Donneesgenerees\OldDataP7s.csv")
+        DataClient = pd.read_csv(r"C:\Users\Johan\Formation Data Science\Projet 7\ProjetDSN7\Applications\Donneesgenerees\ShortNewDataP7.csv", nrows = 1)
     except :
-        OldData = pd.read_csv("OldDataP7s.csv")
-        DataClient = pd.read_csv('ShortNewDataP7.csv', nrows = 1)
+        OldData = pd.read_csv(r"Applications\Donneesgenerees\OldDataP7s.csv")
+        DataClient = pd.read_csv(r'Applications\Donneesgenerees\ShortNewDataP7.csv', nrows = 1)
         
     Target = OldData['TARGET']
     # fausse listresult :
