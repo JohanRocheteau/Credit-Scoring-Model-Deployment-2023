@@ -1,1 +1,1 @@
-web: gunicorn Applications/AppFlask:app
+web: gunicorn Applications.AppFlask:app
