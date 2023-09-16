@@ -261,7 +261,7 @@ if option == "Informations Clients" :
         try :
             loaded_model = pickle.load(open(r'C:\Users\Johan\Formation Data Science\Projet 7\ProjetDSN7\Applications\Donneesgenerees\ModelGrid.sav', 'rb'))
         except :
-            loaded_model = pickle.load(open('Applications\Donneesgenerees\ModelGrid.sav', 'rb'))
+            loaded_model = pickle.load(open('Applications/Donneesgenerees/ModelGrid.sav', 'rb'))
         
         col1, col2 = st.columns(2) # Division en colonne pour centrer l'image.
         with col2 :
