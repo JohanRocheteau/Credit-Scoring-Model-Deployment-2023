@@ -165,7 +165,7 @@ if option == "Page d'accueil" :
         try :
             OpenPicture(r'C:\Users\Johan\Formation Data Science\Projet 7\ProjetDSN7\Applications\Images\LogoEntreprise.png', 300)
         except :
-            OpenPicture(r'Applications\Images\LogoEntreprise.png', 300)
+            OpenPicture('Applications/Images/LogoEntreprise.png', 300)
 
     st.markdown('')
     st.markdown('')
@@ -187,8 +187,8 @@ if option == "Informations Clients" :
         listeNC = ListeNewClient(r'C:\Users\Johan\Formation Data Science\Projet 7\ProjetDSN7\Applications\Donneesgenerees\listNewClients.csv')[0]
         listNewClients = ListeNewClient(r'C:\Users\Johan\Formation Data Science\Projet 7\ProjetDSN7\Applications\Donneesgenerees\listNewClients.csv')[1]
     except :
-        listeNC = ListeNewClient(r'Applications\Donneesgenerees\listNewClients.csv')[0]
-        listNewClients = ListeNewClient(r'Applications\Donneesgenerees\listNewClients.csv')[1]
+        listeNC = ListeNewClient('Applications/Donneesgenerees/listNewClients.csv')[0]
+        listNewClients = ListeNewClient('Applications/Donneesgenerees/listNewClients.csv')[1]
     
         # Séléction d'un client par le chargé de clientel :
     def ChoixClient (listeNC) :
@@ -258,12 +258,12 @@ if option == "Informations Clients" :
                 try : 
                     OpenPicture(r'C:\Users\Johan\Formation Data Science\Projet 7\ProjetDSN7\Applications\Images\PouceVert.png', 300)
                 except :
-                    OpenPicture(r'Applications\Images\PouceVert.png', 300)
+                    OpenPicture('Applications/Images/PouceVert.png', 300)
             if result2 < 92:
                 try :
                     OpenPicture(r'C:\Users\Johan\Formation Data Science\Projet 7\ProjetDSN7\Applications\Images\PouceRouge.png', 300)
                 except :
-                    OpenPicture(r'Applications\Images\PouceRouge.png', 300)
+                    OpenPicture('Applications/Images/PouceRouge.png', 300)
 
     
         # Feature importance globale :
@@ -271,7 +271,7 @@ if option == "Informations Clients" :
         try :
             OpenPicture(r'C:\Users\Johan\Formation Data Science\Projet 7\ProjetDSN7\Applications\Images\SHAPGlobale.png', 600)
         except :
-            OpenPicture(r'Applications\Images\SHAPGlobale.png', 700)
+            OpenPicture('Applications/Images/SHAPGlobale.png', 700)
 
         # Feature importance locale :
         st.markdown("<h2 style='text-align: center; color: green;'>Feature Importance Locale :</h1>", unsafe_allow_html=True)
