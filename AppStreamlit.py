@@ -224,13 +224,20 @@ if option == "Informations Clients" :
         DataClient = DataClient.drop(columns = 'TARGET')
         
         # Personalisation du client :
-        Prenoms = pd.read_csv('Prenoms.csv', sep =';', encoding='latin-1')
+        try : 
+            Prenoms = pd.read_csv('Prenoms.csv', sep =';', encoding='latin-1')
+        except :
+            Prenoms = pd.read_csv('Applications/Prenoms.csv', sep =';', encoding='latin-1')
         Prenoms = list(Prenoms[Prenoms['03_langage'] == 'french']['01_prenom'])
         Prenoms = [i.capitalize() for i in Prenoms]
         Prenoms = random.choice(Prenoms)
         st.write('**Prenom :** ', Prenoms)
         
-        Noms = pd.read_csv('patronymes.csv')
+        try :
+            Noms = pd.read_csv('patronymes.csv')
+        except :
+            Noms = pd.read_csv('Applications/patronymes.csv')
+        
         Noms = Noms.dropna()
         Noms = list(Noms['patronyme'])
         Noms = random.choice(Noms)
