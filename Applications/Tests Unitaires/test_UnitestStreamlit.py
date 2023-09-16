@@ -7,7 +7,7 @@ import numpy as np
 
 # Ajoutez le chemin du répertoire parent au chemin de recherche de Python
 current_dir = os.path.dirname(os.path.abspath(__file__))
-parent_dir = os.path.dirname(current_dir)
+parent_dir = os.path.dirname(os.path.dirname(current_dir))
 sys.path.append(parent_dir)
 
 from AppStreamlit import load_data,  ListeNewClient, GoodPlots
