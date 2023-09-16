@@ -1,0 +1,14 @@
+streamlit
+pandas
+seaborn
+numpy
+requests
+mlflow
+plotly
+numba
+shap
+ipython
+Flask
+gunicorn
+lightgbm
+pytest
