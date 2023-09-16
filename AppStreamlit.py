@@ -32,7 +32,7 @@ def load_data(url):
 try : # for pytest
     OldData = load_data(r"C:\Users\Johan\Formation Data Science\Projet 7\ProjetDSN7\Applications\Donneesgenerees\OldDataP7s.csv")
 except : # for streamlit online
-    OldData = load_data(r"Applications\Donneesgenerees\OldDataP7s.csv")
+    OldData = load_data("Applications//Donneesgenerees//OldDataP7s.csv")
 
 
 Variables = list(OldData.columns)
