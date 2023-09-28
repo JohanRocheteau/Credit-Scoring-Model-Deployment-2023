@@ -59,7 +59,7 @@ def ListeNewClient (listecsv):
 # Graphique jauge :     
 def JaugeClient (result2) :
     plot_bgcolor = "#def"
-    quadrant_colors = [plot_bgcolor, "#2bad4e", "#fdee00", "#f2a529", "#f25829"] 
+    quadrant_colors = [plot_bgcolor, "#2bad4e", "#90EE90", "#f2a529", "#f25829"] 
     quadrant_text = ["", "<b>Good</b>", "<b>low</b>", "<b>Very Low</b>", "<b>Ultra Low</b>"]
     n_quadrants = len(quadrant_colors) - 1
     
@@ -268,12 +268,12 @@ if option == "Informations Clients" :
             JaugeClient (result2)
             
         with col1 :
-            if result2 >= 92:
+            if result2 >= 59:
                 try : 
                     OpenPicture(r'C:\Users\Johan\Formation Data Science\Projet 7\ProjetDSN7\Applications\Images\PouceVert.png', 300)
                 except :
                     OpenPicture('Applications/Images/PouceVert.png', 300)
-            if result2 < 92:
+            if result2 < 59:
                 try :
                     OpenPicture(r'C:\Users\Johan\Formation Data Science\Projet 7\ProjetDSN7\Applications\Images\PouceRouge.png', 300)
                 except :

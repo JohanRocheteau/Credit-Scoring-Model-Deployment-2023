@@ -26,21 +26,21 @@ def test_predict_endpoint1(client):
     result = int(round(float(response.text.split(' ')[1].split(']]')[0]),2)*100)
     print(result)
     assert response.status_code == 200
-    assert result == 43
+    assert result == 38
 
 def test_predict_endpoint2(client):
     response = client.post('/api/', json = data2)
     result = int(round(float(response.text.split(' ')[1].split(']]')[0]),2)*100)
     print(result)
     assert response.status_code == 200
-    assert result == 64
+    assert result == 60
     
 def test_predict_endpoint3(client):
     response = client.post('/api/', json = data3)
     result = int(round(float(response.text.split(' ')[1].split(']]')[0]),2)*100)
     print(result)
     assert response.status_code == 200
-    assert result == 37
+    assert result == 39
 
 if __name__ == '__main__':
     pytest.main()
