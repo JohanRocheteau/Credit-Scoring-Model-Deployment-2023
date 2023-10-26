@@ -2,7 +2,7 @@
 
 ## Mise en situation :
 - **Entreprise :** Prêt à dépenser
-- **Logo :**
+- **Logo :** ![Logo]()
 - **Activité :** Propose des crédits à la consommation pour les personnes ayant peu ou pass du tout d'historique de prêt.
 - **But :** Mise en place d'un outil de scoring crédit pour calculer la probabilité qu'un client rembourse son prêt immobilier.
 - **Jeux de données :** [Base de Données](https://www.kaggle.com/c/home-credit-default-risk/data)
@@ -18,30 +18,52 @@
 	- Ouvertures des fichiers
 	- Création/modifications des variables (par calculs, dummisations, factorisation) grâce au code de Kaggle
 	- Merge des fichiers 
-	- Création de fichiers moins lourds pour mettre sur GitHub (25Mo max)
+	- Création de fichiers moins lourds pour GitHub (25Mo max)
 	- Récupération des nouveaux clients pour l'application
 
     - **Etude du déséquilibre des données et choix d'un modèle de Machine Learning :**
 	- Utilisation de MLFlow pour le suivit et la comparaison des runs
 	- Création de deux mètrics pour ajouter du poids aux faux négatifs
 	- **Comparaison de divers façon de gérer le déséquilibre des données :** SMOTE, Class_Weight, Undersampling, Oversampling
+
+   ![Unbalanced](PhotosReadme/Variationunbalanced.png)
 	- **Comparaison de divers modèles de Machine Learning :** DummyClassifier, LogisticRegression, randomForestClassifier et LGBMClassifier (Plus KNN et XGBOOST qui était trop long à runner) :
 	- Etude de la variation du poids sur le CLASS_WEIGHT :
+   
+   ![Poids](PhotosReadme/Variationpoids.png)
 
     - **Optimisation du modèle de machine learning choisi :**
 	- Réduction du nombre de variables aux variables ayant moins de 70% de NaNs
 	- Optimisation du modèle LGBMclassifier via **GridSearchCV** en trois étapes
-	- Analyse des résultats via Matrice de Compréhension :
-	- Etude de la variation du seuil de probabilité :
+	- Analyse des résultats via Matrice de Confusion :
+
+   ![MC](PhotosReadme/MatriceConfusion.png)
+	- Etude de la variation du seuil de probabilité servant à améliorer la métric perso :
+
+   ![Proba](PhotosReadme/Variationproba.png)
 	- Exportation du modèle final en pickle pour utilisation sur mon API Flask.
-	- Etude des features importances (Features_importances et SHAP) :
+	- Etude des features importances (Features_importances et SHAPglobale et locale) :
+
+   ![SHAP](PhotosReadme/SHAPlocale.png)
 	- Divers tests de prédictions via MLFlow, via l'API Flask en locale et l'API Flask sur Heroku.
 
     - **Etude du DataDrift :**
-	- Réalisé sur les 20 varibles issus du features_importances
+	- Réalisé sur les 20 varibles issus du features_importances :
+   
+   ![DD2](PhotosReadme/Datadrift2.png)
+   ![DD1](PhotosReadme/Datadrift.png)
 
     - Création d'une API FLASK en python hébergé sur Heroku pour la prédiction du remboursement du prêt immobilier.
-    - Création d'une application Streamlit qui appelle l'API FLASK. 
+    - Création d'une application Streamlit qui appelle l'API FLASK :
+    	- Interface de l'application :
+
+  ![Interface](PhotosReadme/InterfaceApplication.png)
+  	- Prédiction pour un client :
+
+  ![Prediction](PhotosReadme/PredictionApplication.png)
+ 	- Graphiques sur deux variables pertinentes pour le client :
+
+    ![Graphiques](PhotosReadme/GraphiquesApplica.png)
 
 
 
