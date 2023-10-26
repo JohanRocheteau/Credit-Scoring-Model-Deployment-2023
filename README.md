@@ -3,7 +3,7 @@
 ## Mise en situation :
 - **Entreprise :** Prêt à dépenser
 - **Logo :** ![Logo](PhotosReadme/LogoP6.png)
-- **Activité :** Propose des crédits à la consommation pour les personnes ayant peu ou pass du tout d'historique de prêt.
+- **Activité :** Propose des crédits à la consommation pour les personnes ayant peu ou pas du tout d'historique de prêt.
 - **But :** Mise en place d'un outil de scoring crédit pour calculer la probabilité qu'un client rembourse son prêt immobilier.
 - **Jeux de données :** [Base de Données](https://www.kaggle.com/c/home-credit-default-risk/data)
 - **Missions :**
