@@ -22,12 +22,12 @@
 	- Récupération des nouveaux clients pour l'application
 
     - **Etude du déséquilibre des données et choix d'un modèle de Machine Learning :**
-	- Utilisation de MLFlow pour le suivit et la comparaison des runs
-	- Création de deux mètrics pour ajouter du poids aux faux négatifs
-	- **Comparaison de divers façon de gérer le déséquilibre des données :** SMOTE, Class_Weight, Undersampling, Oversampling
+	- Utilisation de MLFlow pour le suivi et la comparaison des runs
+	- Création de deux métriques pour ajouter du poids aux faux négatifs
+	- **Comparaison de diverses façons de gérer le déséquilibre des données :** SMOTE, Class_Weight, Undersampling, Oversampling
 
    ![Unbalanced](PhotosReadme/Variationunbalanced.png)
-	- **Comparaison de divers modèles de Machine Learning :** DummyClassifier, LogisticRegression, randomForestClassifier et LGBMClassifier (Plus KNN et XGBOOST qui était trop long à runner) :
+	- **Comparaison de divers modèles de Machine Learning :** DummyClassifier, LogisticRegression, randomForestClassifier et LGBMClassifier (Plus KNN et XGBOOST qui étaient trop longs à runner) :
 	- Etude de la variation du poids sur le CLASS_WEIGHT :
    
    ![Poids](PhotosReadme/Variationpoids.png)
@@ -38,7 +38,7 @@
 	- Analyse des résultats via Matrice de Confusion :
 
    ![MC](PhotosReadme/MatriceConfusion.png)
-	- Etude de la variation du seuil de probabilité servant à améliorer la métric perso :
+	- Etude de la variation du seuil de probabilité servant à améliorer la métrique perso :
 
    ![Proba](PhotosReadme/Variationproba.png)
 	- Exportation du modèle final en pickle pour utilisation sur mon API Flask.
@@ -48,7 +48,7 @@
 	- Divers tests de prédictions via MLFlow, via l'API Flask en locale et l'API Flask sur Heroku.
 
     - **Etude du DataDrift :**
-	- Réalisé sur les 20 varibles issus du features_importances :
+	- Réalisé sur les 20 variables issues du features_importances :
    
    ![DD2](PhotosReadme/Datadrift2.png)
    ![DD1](PhotosReadme/Datadrift.png)
@@ -111,7 +111,7 @@
 		- data_stability.html
 	- Data Drift.ipynb : Notebook d'analyse du DD
 	- DonneesP7.ipynb : Nettoyage des merges des données
-	- MLP7-ChoixModèle-Unbalance.ipynb : Notebook de modèlisation pour choix du traitement des données déséquilibrées et du modèle de ML.
+	- MLP7-ChoixModèle-Unbalance.ipynb : Notebook de modélisation pour choix du traitement des données déséquilibrées et du modèle de ML.
 	- MLP7-OptimisationModel.ipynb : Notebook d'optimisation du modèle (et tests de l'API)
 - .gitignore : fichiers à ignorer dans le suivit du projet
 - AppStreamlit.py : Application Streamlit (doit être à la racine pour être déployé sur Streamlit.io)
