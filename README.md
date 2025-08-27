@@ -1,106 +1,84 @@
-# 📊 Projet N°6 : Implémentez un modèle de scoring
+# Credit-Scoring-Model-Deployment-2023
 
-## **📌 Contexte et Objectif**
+![Illustration](PhotosReadme/LogoP6.png)
 
-**Entreprise :** Prêt à Dépenser  
-**Logo :** ![Logo](PhotosReadme/LogoP6.png)  
+Projet réalisé en 2023 dans le cadre de ma formation en Data Science.  
+Objectif : développer un modèle de scoring de crédit pour prédire la probabilité de défaut de paiement de clients sans historique bancaire, et le déployer sous forme d’API et d’application web interactive.
 
-### **🎯 Objectif**
-Développer un **modèle de scoring de crédit** permettant de **prédire la capacité de remboursement des clients** n'ayant pas ou peu d'historique bancaire.
+## Objectifs
 
-### **📂 Jeux de données**
-- 📊 **Données :** [Base de Données](https://www.kaggle.com/c/home-credit-default-risk/data)
-- 🔍 **Missions du projet :**
-  - Construire un **modèle de scoring** capable de prédire la probabilité de défaut de paiement.
-  - Développer un **dashboard interactif** pour aider les gestionnaires de crédits à interpréter les prédictions.
-  - Mettre en production le modèle via une **API Flask**, intégrée au dashboard.
+- Prédire le risque de défaut client (binaire : défaut / non défaut)
+- Gérer le déséquilibre des classes dans les données
+- Fournir une interface visuelle aux analystes crédit
+- Mettre le modèle en production via une API Flask
+- Intégrer le tout dans une application Streamlit
 
----
+## Données
 
-## **🚀 Réalisations et Méthodologie**
+- **Source** : [Home Credit – Kaggle Competition](https://www.kaggle.com/c/home-credit-default-risk/data)
 
-### **1️⃣ Analyse des Données**
-- Ouverture et exploration des fichiers
-- Préparation des données :
-  - **Création et transformation** des variables (dummisation, factorisation)
-  - **Fusion des fichiers** et simplification des datasets lourds
-  - Sélection des **nouveaux clients** pour l'application
+## Méthodologie
 
----
+### 1. Préparation des données
 
-### **2️⃣ Gestion du Déséquilibre des Données et Sélection du Modèle**
-- 📊 **Techniques de gestion du déséquilibre** :
-  - **SMOTE**, **Class_Weight**, **Undersampling**, **Oversampling**
-  
+- Nettoyage, fusion des tables
+- Transformation des variables (encoding, réduction de dimensions)
+- Sélection des nouveaux clients comme jeu d’inférence
+
+### 2. Modélisation et sélection
+
+- Gestion du déséquilibre avec :
+  - SMOTE, Undersampling, Oversampling, Class Weight  
   ![Unbalanced](PhotosReadme/Variationunbalanced.png)
-  
-- ⚙ **Comparaison des modèles de Machine Learning** :
-  - **DummyClassifier, LogisticRegression, RandomForestClassifier, LGBMClassifier**
-  - **KNN et XGBOOST** (trop longs à exécuter)
 
-- 🔧 **Optimisation des hyperparamètres** via **GridSearchCV**
-- 🏆 **Meilleur modèle sélectionné : LGBMClassifier**
+- Modèles comparés :
+  - DummyClassifier, Logistic Regression, Random Forest, LightGBM
+  - KNN et XGBoost testés mais trop coûteux
 
+- Meilleur modèle : **LGBMClassifier**, optimisé avec GridSearchCV  
   ![Poids](PhotosReadme/Variationpoids.png)
 
----
+### 3. Évaluation et interprétation
 
-### **3️⃣ Optimisation du Modèle et Interprétation**
-- **Réduction des variables** (seuil < 70% de NaNs)
-- **Évaluation des performances** :
-  - **Matrice de confusion** pour validation des résultats
-
+- Réduction des variables (suppression > 70% NaNs)
+- Évaluation : matrice de confusion, score de validation  
   ![MC](PhotosReadme/MatriceConfusion.png)
-  
-  - **Optimisation du seuil de probabilité** pour améliorer la métrique de scoring
 
+- Ajustement du seuil de classification  
   ![Proba](PhotosReadme/Variationproba.png)
 
-- **Analyse des variables les plus importantes** :
-  - **Feature Importances, SHAP globale et locale**
-
+- Interprétation avec :
+  - Feature Importance globale
+  - SHAP globale et locale  
   ![SHAP](PhotosReadme/SHAPlocale.png)
 
----
+### 4. Déploiement
 
-### **4️⃣ Déploiement du Modèle**
-✅ **Mise en production sur une API Flask hébergée sur Heroku**  
-✅ **Développement d'une application Streamlit** intégrant l'API  
+- **API Flask** déployée sur Heroku
+- **Application Streamlit** connectée à l’API
 
-🖥 **Interface utilisateur :**
-  
-  ![Interface](PhotosReadme/InterfaceApplication.png)
-
-📊 **Exemple de prédiction pour un client :**
-  
-  ![Prediction](PhotosReadme/PredictionApplication.png)
-
-📉 **Graphiques explicatifs des prédictions :**
-  
+  ![Interface](PhotosReadme/InterfaceApplication.png)  
+  ![Prediction](PhotosReadme/PredictionApplication.png)  
   ![Graphiques](PhotosReadme/GraphiquesApplica.png)
 
----
+### 5. Analyse du Data Drift
 
-### **5️⃣ Étude du Data Drift**
-- **Objectif :** Analyser la stabilité du modèle au fil du temps  
-- **Variables utilisées :** **Top 20 features les plus influentes**
-  
-  ![DD2](PhotosReadme/Datadrift2.png)  
-  ![DD1](PhotosReadme/Datadrift.png)  
+- Suivi de l’évolution des 20 features principales dans le temps
+- Visualisations comparatives avant/après  
+  ![Drift 1](PhotosReadme/Datadrift2.png)  
+  ![Drift 2](PhotosReadme/Datadrift.png)
 
----
+## Technologies utilisées
 
-## **🛠️ Technologies et Outils Utilisés**
-- **Langage :** Python 🐍  
-- **Librairies :** Pandas, Seaborn, Matplotlib, Scikit-learn, LightGBM, MLflow  
-- **Déploiement :** Flask (API) sur **Heroku**, Dashboard **Streamlit**  
-- **Méthodes utilisées :** Machine Learning, SHAP, Feature Engineering, Data Drift Analysis  
+- **Langage** : Python  
+- **Bibliothèques** : pandas, seaborn, matplotlib, scikit-learn, LightGBM, SHAP, MLflow  
+- **Déploiement** : Flask (API), Heroku (hébergement), Streamlit (interface)  
+- **Méthodes** : Machine Learning, Interprétabilité, Feature Engineering, Data Drift Analysis
 
----
+## Contact
 
-## **📬 Contact et Feedback**
-💡 Ce projet a été réalisé dans le cadre de ma **formation Data Science**. N’hésitez pas à **laisser vos suggestions** ou à **me contacter** pour en discuter !  
+Projet réalisé en 2023 dans le cadre de ma formation en Data Science.  
+Pour toute remarque ou question :
 
-📩 **Contact :**  
-📧 [johan.rocheteau@hotmail.fr](mailto:johan.rocheteau@hotmail.fr)  
-🔗 [LinkedIn](https://www.linkedin.com/in/johan-rocheteau)
+- **Email** : [johan.rocheteau@hotmail.fr](mailto:johan.rocheteau@hotmail.fr)  
+- **LinkedIn** : [linkedin.com/in/johan-rocheteau](https://www.linkedin.com/in/johan-rocheteau)
